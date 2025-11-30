@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<video id="videoPlayer" width="640" height="320" controls>
+    <source id="videoSource" src="" type="video/mp4">
+</video>
+<br>
+
+<input type="file" id="myfile" accept="video/*">
+
+<script>
+    const input = document.getElementById("myfile");
+    const video = document.getElementById("videoPlayer");
+    const source = document.getElementById("videoSource");
+
+    input.onchange = () => {
+        const file = input.files[0];
+        if (file) {
+            source.src = URL.createObjectURL(file);
+            video.load();
+            video.play();
+        }
+    };
+</script>
+
+</body>
+</html>
