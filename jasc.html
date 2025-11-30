@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>JavaScript Mini Projects</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .box {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            box-shadow: 0 0 5px #ccc;
+        }
+
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        input {
+            padding: 8px;
+        }
+        
+        ul li {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<h1>✅ Step 3 – JavaScript Mini Projects</h1>
+
+<!-- ======================================= -->
+<!-- 1. COUNTER APP -->
+<!-- ======================================= -->
+<div class="box">
+    <h2>1. Counter App</h2>
+    <h1 id="count">0</h1>
+    <button onclick="increase()">Increase</button>
+    <button onclick="decrease()">Decrease</button>
+    <button onclick="reset()">Reset</button>
+</div>
+
+
+<!-- ======================================= -->
+<!-- 2. SIMPLE CALCULATOR -->
+<!-- ======================================= -->
+<div class="box">
+    <h2>2. Calculator</h2>
+    <input type="number" id="num1" placeholder="Number 1">
+    <input type="number" id="num2" placeholder="Number 2">
+    <br><br>
+    <button onclick="add()">+</button>
+    <button onclick="sub()">-</button>
+    <button onclick="mul()">×</button>
+    <button onclick="div()">÷</button>
+
+    <h3>Result: <span id="result">0</span></h3>
+</div>
+
+
+<!-- ======================================= -->
+<!-- 3. TO-DO LIST -->
+<!-- ======================================= -->
+<div class="box">
+    <h2>3. To-Do List</h2>
+
+    <input type="text" id="taskInput" placeholder="Enter new task">
+    <button onclick="addTask()">Add Task</button>
+
+    <ul id="taskList"></ul>
+    <small>(Click on task to delete)</small>
+</div>
+
+
+<!-- ======================================= -->
+<!-- 4. DIGITAL CLOCK -->
+<!-- ======================================= -->
+<div class="box">
+    <h2>4. Digital Clock</h2>
+    <h1 id="clock">00:00:00</h1>
+</div>
+
+
+<script>
+
+    /* =========================
+       1. COUNTER PROJECT
+    ============================ */
+
+    let count = 0;
+
+    function increase() {
+        count++;
+        document.getElementById("count").innerText = count;
+    }
+
+    function decrease() {
+        count--;
+        document.getElementById("count").innerText = count;
+    }
+
+    function reset() {
+        count = 0;
+        document.getElementById("count").innerText = count;
+    }
+
+
+    /* =========================
+       2. CALCULATOR PROJECT
+    ============================ */
+
+    function add() {
+        let a = Number(document.getElementById("num1").value);
+        let b = Number(document.getElementById("num2").value);
+        document.getElementById("result").innerText = a + b;
+    }
+
+    function sub() {
+        let a = Number(document.getElementById("num1").value);
+        let b = Number(document.getElementById("num2").value);
+        document.getElementById("result").innerText = a - b;
+    }
+
+    function mul() {
+        let a = Number(document.getElementById("num1").value);
+        let b = Number(document.getElementById("num2").value);
+        document.getElementById("result").innerText = a * b;
+    }
+
+    function div() {
+        let a = Number(document.getElementById("num1").value);
+        let b = Number(document.getElementById("num2").value);
+
+        if(b === 0) {
+            document.getElementById("result").innerText = "Cannot divide by 0";
+        } else {
+            document.getElementById("result").innerText = a / b;
+        }
+    }
+
+
+    /* =========================
+       3. TO DO LIST
+    ============================ */
+
+    function addTask() {
+        let task = document.getElementById("taskInput").value;
+
+        if(task === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        let li = document.createElement("li");
+        li.innerText = task;
+
+        // Remove task when clicked
+        li.onclick = function() {
+            this.remove();
+        };
+
+        document.getElementById("taskList").appendChild(li);
+
+        document.getElementById("taskInput").value = "";
+    }
+
+
+    /* =========================
+       4. DIGITAL CLOCK
+    ============================ */
+
+    function updateClock() {
+        let now = new Date();
+
+        let h = String(now.getHours()).padStart(2, "0");
+        let m = String(now.getMinutes()).padStart(2, "0");
+        let s = String(now.getSeconds()).padStart(2, "0");
+
+        document.getElementById("clock").innerText = h + ":" + m + ":" + s;
+    }
+
+    setInterval(updateClock, 1000);
+
+</script>
+
+</body>
+</html>
